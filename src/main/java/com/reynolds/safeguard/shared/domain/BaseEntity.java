@@ -5,28 +5,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
     @Id
     @Column(updatable = false)
-    private UUID uuid = Uuids.v7();
+    private UUID id = Uuids.v7();
 
     @CreationTimestamp
     @Column(updatable = false)
     private Timestamp createdAt;
 
-    @Column(updatable = false)
+    @UpdateTimestamp
     private Timestamp updatedAt;
 
     @Version
     private Long version;
 
-    public UUID getUuid() {
-        return uuid;
+    public UUID getId() {
+        return id;
     }
 
     public Timestamp getCreatedAt() {

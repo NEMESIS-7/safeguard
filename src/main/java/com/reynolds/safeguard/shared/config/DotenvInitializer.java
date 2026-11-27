@@ -26,7 +26,7 @@ public class DotenvInitializer implements ApplicationContextInitializer<Configur
         dotenv.entries().forEach(entry -> props.put(entry.getKey(), entry.getValue()));
 
         applicationContext.getEnvironment().getPropertySources()
-                .addFirst(new MapPropertySource("dotenv", props));
+                .addLast(new MapPropertySource("dotenv", props));
 
 
     }
